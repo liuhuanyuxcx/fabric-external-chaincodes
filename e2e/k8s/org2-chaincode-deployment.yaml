@@ -1,0 +1,31 @@
+---
+#---------------- Chaincode Deployment ---------------------
+apiVersion: apps/v1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: chaincode-e2e-org2
+  namespace: hyperledger
+  labels:
+    app: chaincode-e2e-org2
+spec:
+  selector:
+    matchLabels:
+      app: chaincode-e2e-org2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: chaincode-e2e-org2
+    spec:
+      containers:
+        - image: chaincode/e2e:1.0
+          name: chaincode-e2e-org2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: CHAINCODE_CCID
+              value: "e2e:641e63a1dc9f52550ee75965548ead179446b2b1e3f806ff3821f8ae79b664b0"
+            - name: CHAINCODE_ADDRESS
+              value: "0.0.0.0:7052"
+          ports:
+            - containerPort: 7052

@@ -125,10 +125,27 @@ function cleanNetwork() {
         rm ./docker-compose.yaml
     fi
 
-    if [ -f ./docker-compose.yamlt ]; then
-        rm ./docker-compose.yamlt
+    if [ -f ~/storage/peer0-org1 ]; then
+        sudo rm -rf ~/storage/peer0-org1/*
     fi
 
+    if [ -f ~/storage/peer0-org2 ]; then
+        sudo rm -rf ~/storage/peer0-org2/*
+    fi
+
+    if [ -d ~/storage/orderer0 ]; then
+        sudo rm -rf ~/storage/orderer0/*
+    fi
+
+    if [ -d ~/storage/orderer1 ]; then
+        sudo rm -rf ~/storage/orderer1/*
+    fi
+
+    if [ -d ~/storage/orderer2 ]; then
+        sudo rm -rf ~/storage/orderer2/*
+    fi
+
+    kubectl delete ns hyperledger
     # This operations removes all docker containers and images regardless
     #
     ######docker rm -f $(docker ps -aq)
