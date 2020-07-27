@@ -108,7 +108,11 @@ function startNetwork() {
 
 function cleanNetwork() {
     cd $PROJECT_DIR
-    
+    echo "Start to delete namespace hyperledger..."
+    kubectl delete ns hyperledger
+    echo "Delete namespace hyperledger Successd!"
+
+    echo "Start to delete data..."
     if [ -d ./channel-artifacts ]; then
             rm -rf ./channel-artifacts
     fi
@@ -144,8 +148,8 @@ function cleanNetwork() {
     if [ -d ~/storage/orderer2 ]; then
         sudo rm -rf ~/storage/orderer2/*
     fi
-
-    kubectl delete ns hyperledger
+    echo "Delete data successed!"
+    echo "Clean network completed!"
     # This operations removes all docker containers and images regardless
     #
     ######docker rm -f $(docker ps -aq)
