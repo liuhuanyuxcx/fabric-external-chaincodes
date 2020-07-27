@@ -37,14 +37,14 @@ configtxgen --version
 ```
 ### 方法二：源码编译
 ```
-#下载fabric源码
+# 下载fabric源码
 mkdir -p $GOPATH/src/github.com/hyperledger
 cd $GOPATH/src/github.com/hyperledger
 git clone https://github.com/hyperledger/fabric.git
 cd fabric
-#编译
+# 编译
 make native
-#移动到GOPATH下的bin目录，供fabricOps.sh使用
+# 移动到GOPATH下的bin目录，供fabricOps.sh使用
 mv $GOPATH/src/github.com/hyperledger/fabric/build/bin $GOPATH/
 
 ```
