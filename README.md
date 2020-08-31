@@ -333,6 +333,15 @@ peer chaincode invoke -o orderer0:7050 --tls true --cafile $ORDERER_CA -C mychan
 peer chaincode query -C mychannel -n marbles -c '{"Args":["readMarble","marble1"]}'
 ```
 
+## 问题及解决方法：
+
+### 1.如何指定背书策略
+在`peer lifecycle chaincode approveformyorg`和`peer lifecycle chaincode commit`时增加`--signature-policy "AND ('Org1MSP.peer','Org2MSP.peer')"`即可
+
+### 2.升级链码
+外部链码改变之后，需要重新生成镜像并启动链码pod，然后在审批和提交链码时，修改`version`，`sequence`在原有基础上+1，其他和第一次审批和提交链码一样。
+
 ## 参考链接和源码：
 - [Hyperledger Fabric 2.0外部链码实战【Kubernetes】](http://blog.hubwiz.com/2020/03/12/fabric-2-external-chaincode/)
 - [源码参考](https://github.com/vanitas92/fabric-external-chaincodes)
+- [官方文档](https://hyperledger-fabric.readthedocs.io/en/release-2.0/deploy_chaincode.html)
